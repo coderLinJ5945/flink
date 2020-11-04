@@ -136,3 +136,5 @@ This article describes [how to contribute to Apache Flink](https://flink.apache.
 
 Apache Flink is an open source project of The Apache Software Foundation (ASF).
 The Apache Flink project originated from the [Stratosphere](http://stratosphere.eu) research project.
+
+# 我的学习笔记 [https://github.com/coderLinJ5945/flink/tree/release-1.11-me/linj](https://github.com/coderLinJ5945/flink/tree/release-1.11-me/linj)
