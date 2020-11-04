@@ -73,6 +73,7 @@ public class ExecutionConfig implements Serializable, Archiveable<ArchivedExecut
 	/**
 	 * The constant to use for the parallelism, if the system should use the number
 	 * of currently available slots.
+	 * 最大的插槽（并行性） Integer.MAX_VALUE
 	 */
 	@Deprecated
 	public static final int PARALLELISM_AUTO_MAX = Integer.MAX_VALUE;
@@ -80,6 +81,7 @@ public class ExecutionConfig implements Serializable, Archiveable<ArchivedExecut
 	/**
 	 * The flag value indicating use of the default parallelism. This value can
 	 * be used to reset the parallelism back to the default state.
+	 * 默认并行性为 -1
 	 */
 	public static final int PARALLELISM_DEFAULT = -1;
 

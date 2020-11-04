@@ -52,6 +52,8 @@ public interface FlatMapFunction<T, O> extends Function, Serializable {
 	 *
 	 * @throws Exception This method may throw exceptions. Throwing an exception will cause the operation
 	 *                   to fail and may trigger recovery.
+	 *  从输入数据集中，获取一个元素并进行转换成 0,1，或者多个元素
+	 *
 	 */
 	void flatMap(T value, Collector<O> out) throws Exception;
 }

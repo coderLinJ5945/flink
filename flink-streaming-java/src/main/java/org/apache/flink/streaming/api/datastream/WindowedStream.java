@@ -786,7 +786,9 @@ public class WindowedStream<T, K, W extends Window> {
 	 * is either the name of a public field or a getter method with parentheses
 	 * of the {@link DataStream DataStreams} underlying type. A dot can be used to drill
 	 * down into objects, as in {@code "field1.getInnerField2()" }.
-	 *
+	 * 应用一个聚合，该聚合为每个窗口在给定字段表达式上提供pojo数据流的最大值。
+	 * 字段表达式可以是公共字段的名称，也可以是基础类型{@link DataStream DataStreams}带有圆括号的getter方法。
+	 * 点可以用来深入到对象中，如{@code "field1.getInnerField2()"}。
 	 * @param field The field expression based on which the aggregation will be applied.
 	 * @return The transformed DataStream.
 	 */

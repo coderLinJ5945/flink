@@ -42,6 +42,7 @@ import java.util.List;
  * WindowedStream<Tuple2<String, Integer>, String, TimeWindow> windowed =
  *   keyed.window(SlidingEventTimeWindows.of(Time.minutes(1), Time.seconds(10)));
  * } </pre>
+ * 滑动事件窗口，前闭后开:[1,2)
  */
 @PublicEvolving
 public class SlidingEventTimeWindows extends WindowAssigner<Object, TimeWindow> {
@@ -53,6 +54,12 @@ public class SlidingEventTimeWindows extends WindowAssigner<Object, TimeWindow> 
 
 	private final long offset;
 
+	/**
+	 *
+	 * @param size  	窗口大小
+	 * @param slide		窗口滑动步长
+	 * @param offset
+	 */
 	protected SlidingEventTimeWindows(long size, long slide, long offset) {
 		if (Math.abs(offset) >= slide || size <= 0) {
 			throw new IllegalArgumentException("SlidingEventTimeWindows parameters must satisfy " +

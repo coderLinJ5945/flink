@@ -177,6 +177,8 @@ public interface WatermarkStrategy<T> extends
 	/**
 	 * Creates a watermark strategy that generates no watermarks at all. This may be useful in
 	 * scenarios that do pure processing-time based stream processing.
+	 * 创建一个水印策略，生成任何水印。
+	 * 只基于处理时间的流处理的场景使用
 	 */
 	static <T> WatermarkStrategy<T> noWatermarks() {
 		return (ctx) -> new NoWatermarksGenerator<>();

@@ -139,6 +139,7 @@ public abstract class FlinkKafkaConsumerBase<T> extends RichParallelSourceFuncti
 	/**
 	 * User-set flag determining whether or not to commit on checkpoints.
 	 * Note: this flag does not represent the final offset commit mode.
+	 * 是否开启 checkpoint上提交
 	 */
 	private boolean enableCommitOnCheckpoints = true;
 
@@ -478,6 +479,9 @@ public abstract class FlinkKafkaConsumerBase<T> extends RichParallelSourceFuncti
 	 * savepoint, only the offsets in the restored state will be used.
 	 *
 	 * @return The consumer object, to allow function chaining.
+	 *
+	 * 配置从偏移量开始读取
+	 * 当从checkpoint 或 savepoint还原使用者时，只使用还原状态中的偏移量。
 	 */
 	public FlinkKafkaConsumerBase<T> setStartFromGroupOffsets() {
 		this.startupMode = StartupMode.GROUP_OFFSETS;

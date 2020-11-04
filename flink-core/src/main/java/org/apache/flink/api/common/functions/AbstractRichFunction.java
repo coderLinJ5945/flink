@@ -28,6 +28,11 @@ import java.io.Serializable;
  * Rich functions have additional methods for initialization ({@link #open(Configuration)}) and
  * teardown ({@link #close()}), as well as access to their runtime execution context via
  * {@link #getRuntimeContext()}.
+ *
+ * 运行时上下文构造类 ：RuntimeContext
+ * 		implements Serializable： 序列化特性
+ *		implements RichFunction： user-defined 用于用户自定义的函数接口
+ *
  */
 @Public
 public abstract class AbstractRichFunction implements RichFunction, Serializable {

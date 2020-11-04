@@ -46,6 +46,15 @@ import org.apache.flink.util.OutputTag;
  *
  * @param <I> Type of the input elements.
  * @param <O> Type of the output elements.
+ *
+ * 低级流处理的函数方法类：
+ *			 1. 处理事件和流元素 events (stream elements)
+ *	    	 2. 状态处理（容错，一致，仅在keyed stream上）键控流
+ *	    	 3. 计时器（事件时间和处理时间，仅keyed stream上）
+ *
+ *
+ *
+ *
  */
 @PublicEvolving
 public abstract class ProcessFunction<I, O> extends AbstractRichFunction {
@@ -87,6 +96,8 @@ public abstract class ProcessFunction<I, O> extends AbstractRichFunction {
 	/**
 	 * Information available in an invocation of {@link #processElement(Object, Context, Collector)}
 	 * or {@link #onTimer(long, OnTimerContext, Collector)}.
+	 *
+	 * 计时器类容器 ：事件时间和处理时间
 	 */
 	public abstract class Context {
 

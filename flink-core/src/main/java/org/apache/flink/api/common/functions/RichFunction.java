@@ -25,6 +25,10 @@ import org.apache.flink.configuration.Configuration;
  * An base interface for all rich user-defined functions. This class defines methods for
  * the life cycle of the functions, as well as methods to access the context in which the functions
  * are executed.
+ *
+ * 用户自定义的函数接口：
+ * 1. 定义：自定义函数的生命周期
+ * 2. 定义：访问执行函数的上下文
  */
 @Public
 public interface RichFunction extends Function {

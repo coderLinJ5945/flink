@@ -36,6 +36,8 @@ import org.apache.flink.api.common.eventtime.WatermarkStrategy;
  *        org.apache.flink.streaming.api.datastream.KeyedStream#timeWindow(org.apache.flink.streaming.api.windowing.time.Time)}
  * 		that change behaviour based on the time characteristic, please use equivalent operations
  * 		that explicitly specify processing time or event time.
+ *
+ * 	时间特性定义了系统如何为与 时间 相关的顺序和依赖于时间的操作(例如时间窗口)确定时间
  */
 @PublicEvolving
 @Deprecated
@@ -51,6 +53,10 @@ public enum TimeCharacteristic {
 	 * results, because the contents of the windows depends on the speed in which elements arrive.
 	 * It is, however, the cheapest method of forming windows and the method that introduces the
 	 * least latency.
+	 *
+	 * 操作人员的处理时间意味着操作人员使用机器的系统时钟来确定数据流的当前时间。处理时间窗口的触发基于墙上时钟的时间，包括任何元素碰巧在那个时间点到达操作员。
+	 * 指的是我们上面进行Transformation操作时，当时的系统时间
+	 *
 	 */
 	ProcessingTime,
 
@@ -67,6 +73,12 @@ public enum TimeCharacteristic {
 	 * elements are not very much out-of-order means that the latency increase is moderate,
 	 * compared to event
 	 * time.
+	 *
+	 * 摄入时间意味着在元素进入Flink流数据流时确定流中每个单独元素的时间。
+	 * 像windows这样的操作基于那个时间对元素进行分组，
+	 * 这意味着流数据流中的处理速度不影响窗口，而只影响源接收元素的速度。
+	 *
+	 * 指的是数据进入Flink当时的系统时间
 	 */
 	IngestionTime,
 
@@ -95,6 +107,8 @@ public enum TimeCharacteristic {
 	 * event's original time, rather than the time assigned at the data source. Practically, that
 	 * means that event time has generally more meaning, but also that it takes longer to determine
 	 * that all elements for a certain time have arrived.
+	 *
+	 * 流中，每一个单独元素称之为事件，由事件自定义的时间戳决定
 	 */
 	EventTime
 }

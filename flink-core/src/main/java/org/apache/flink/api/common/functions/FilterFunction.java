@@ -55,6 +55,9 @@ public interface FilterFunction<T> extends Function, Serializable {
 	 *
 	 * @throws Exception This method may throw exceptions. Throwing an exception will cause the operation
 	 *                   to fail and may trigger recovery.
+	 * 过滤保留满足条件的数据流，ture才往下传输
+	 *
+	 *
 	 */
 	boolean filter(T value) throws Exception;
 }

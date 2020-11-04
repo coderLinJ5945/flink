@@ -34,6 +34,8 @@ import static org.apache.flink.util.Preconditions.checkNotNull;
 
 /**
  * Configuration that captures all checkpointing related settings.
+ *
+ * 捕获所有检查点配置，用于异常处理恢复
  */
 @Public
 public class CheckpointConfig implements java.io.Serializable {
@@ -42,10 +44,10 @@ public class CheckpointConfig implements java.io.Serializable {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CheckpointConfig.class);
 
-	/** The default checkpoint mode: exactly once. */
+	/** 默认的检查点模式:恰好一次。 The default checkpoint mode: exactly once. */
 	public static final CheckpointingMode DEFAULT_MODE = CheckpointingMode.EXACTLY_ONCE;
 
-	/** The default timeout of a checkpoint attempt: 10 minutes. */
+	/** 检查点尝试的默认超时：10分钟。The default timeout of a checkpoint attempt: 10 minutes. */
 	public static final long DEFAULT_TIMEOUT = 10 * 60 * 1000;
 
 	/** The default minimum pause to be made between checkpoints: none. */
@@ -64,22 +66,22 @@ public class CheckpointConfig implements java.io.Serializable {
 	/** Periodic checkpoint triggering interval. */
 	private long checkpointInterval = -1; // disabled
 
-	/** Maximum time checkpoint may take before being discarded. */
+	/** 检查点尝试的默认超时：10分钟。 Maximum time checkpoint may take before being discarded. */
 	private long checkpointTimeout = DEFAULT_TIMEOUT;
 
-	/** Minimal pause between checkpointing attempts. */
+	/** 检查点尝试之间的最小时间  Minimal pause between checkpointing attempts. */
 	private long minPauseBetweenCheckpoints = DEFAULT_MIN_PAUSE_BETWEEN_CHECKPOINTS;
 
-	/** Maximum number of checkpoint attempts in progress at the same time. */
+	/**最多允许多少个checkpoint同时运行（解决被压问题，快照频率太高，消费处理小于生产要求） Maximum number of checkpoint attempts in progress at the same time. */
 	private int maxConcurrentCheckpoints = DEFAULT_MAX_CONCURRENT_CHECKPOINTS;
 
-	/** Flag to force checkpointing in iterative jobs. */
+	/** 在迭代作业中强制检查点的标志。 Flag to force checkpointing in iterative jobs. */
 	private boolean forceCheckpointing;
 
-	/** Flag to enable unaligned checkpoints. */
+	/** 启用未对齐检查点的标志。 Flag to enable unaligned checkpoints. */
 	private boolean unalignedCheckpointsEnabled;
 
-	/** Cleanup behaviour for persistent checkpoints. */
+	/** 持久检查点的清理行为。 Cleanup behaviour for persistent checkpoints. */
 	private ExternalizedCheckpointCleanup externalizedCheckpointCleanup;
 
 	/**
@@ -92,12 +94,14 @@ public class CheckpointConfig implements java.io.Serializable {
 	@Deprecated
 	private boolean failOnCheckpointingErrors = true;
 
-	/** Determines if a job will fallback to checkpoint when there is a more recent savepoint. **/
+	/** 是否倾向于使用checkpoint使用故障恢复（checkpoint or savepoint） Determines if a job will fallback to checkpoint when there is a more recent savepoint. **/
 	private boolean preferCheckpointForRecovery = false;
 
 	/**
 	 * Determines the threshold that we tolerance declined checkpoint failure number.
 	 * The default value is -1 meaning undetermined and not set via {@link #setTolerableCheckpointFailureNumber(int)}.
+	 *
+	 * checkpoint 失败的阀值（失败会触发重启操作）
 	 * */
 	private int tolerableCheckpointFailureNumber = UNDEFINED_TOLERABLE_CHECKPOINT_NUMBER;
 

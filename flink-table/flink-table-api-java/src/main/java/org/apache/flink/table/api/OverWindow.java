@@ -29,6 +29,7 @@ import java.util.Optional;
  *
  * <p>Similar to SQL, over window aggregates compute an aggregate for each input row over a range
  * of its neighboring rows.
+ * 与SQL类似，通过窗口聚合计算每个输入行在其相邻行的范围内的聚合
  */
 @PublicEvolving
 public final class OverWindow {

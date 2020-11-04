@@ -123,6 +123,8 @@ import static org.apache.flink.util.Preconditions.checkNotNull;
  *
  * @see org.apache.flink.streaming.api.environment.LocalStreamEnvironment
  * @see org.apache.flink.streaming.api.environment.RemoteStreamEnvironment
+ *
+ * 执行流程序的上下文环境
  */
 @Public
 public class StreamExecutionEnvironment {
@@ -632,6 +634,7 @@ public class StreamExecutionEnvironment {
 	// --------------------------------------------------------------------------------------------
 	// Registry for types and serializers
 	// --------------------------------------------------------------------------------------------
+
 
 	/**
 	 * Adds a new Kryo default serializer to the Runtime.

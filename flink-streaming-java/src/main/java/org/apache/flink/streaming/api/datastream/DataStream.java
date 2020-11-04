@@ -112,12 +112,15 @@ import java.util.List;
  * </ul>
  *
  * @param <T> The type of the elements in this stream.
+ *           同类型中的元素流的数据转换
  */
 @Public
 public class DataStream<T> {
 
+	//执行流程序的上下文环境
 	protected final StreamExecutionEnvironment environment;
 
+	//流核心转换对象，提供各种流转换方法
 	protected final Transformation<T> transformation;
 
 	/**
@@ -133,7 +136,7 @@ public class DataStream<T> {
 
 	/**
 	 * Returns the ID of the {@link DataStream} in the current {@link StreamExecutionEnvironment}.
-	 *
+	 * DateStream id int 自增
 	 * @return ID of the DataStream
 	 */
 	@Internal
@@ -143,7 +146,7 @@ public class DataStream<T> {
 
 	/**
 	 * Gets the parallelism for this operator.
-	 *
+	 * 获取运算符的并行度
 	 * @return The parallelism set for this operator.
 	 */
 	public int getParallelism() {
@@ -152,7 +155,7 @@ public class DataStream<T> {
 
 	/**
 	 * Gets the minimum resources for this operator.
-	 *
+	 * 获取操作符的最小资源（个人理解：这里用于做判断是否有资源可用）
 	 * @return The minimum resources set for this operator.
 	 */
 	@PublicEvolving
@@ -162,7 +165,7 @@ public class DataStream<T> {
 
 	/**
 	 * Gets the preferred resources for this operator.
-	 *
+	 * 获取操作符的首选资源
 	 * @return The preferred resources set for this operator.
 	 */
 	@PublicEvolving
@@ -172,7 +175,7 @@ public class DataStream<T> {
 
 	/**
 	 * Gets the type of the stream.
-	 *
+	 * 返回stream流的类型
 	 * @return The type of the datastream.
 	 */
 	public TypeInformation<T> getType() {
@@ -273,6 +276,7 @@ public class DataStream<T> {
 	 * @param key
 	 *            The KeySelector to be used for extracting the key for partitioning
 	 * @return The {@link DataStream} with partitioned state (i.e. KeyedStream)
+	 * 创建一个 KeyedStreeam 使用 key 对操作符状态进行分区
 	 */
 	public <K> KeyedStream<T, K> keyBy(KeySelector<T, K> key) {
 		Preconditions.checkNotNull(key);
@@ -886,6 +890,8 @@ public class DataStream<T> {
 	 *
 	 * @param watermarkStrategy The strategy to generate watermarks based on event timestamps.
 	 * @return The stream after the transformation, with assigned timestamps and watermarks.
+	 * 解决乱序问题：
+	 * 为数据流中的元素分配时间戳，并生成水印来表示事件时间进程。
 	 */
 	public SingleOutputStreamOperator<T> assignTimestampsAndWatermarks(
 			WatermarkStrategy<T> watermarkStrategy) {
@@ -910,7 +916,7 @@ public class DataStream<T> {
 	 * {@link #assignTimestampsAndWatermarks(WatermarkStrategy)} to use the
 	 * new interfaces instead. The new interfaces support watermark idleness and no longer need
 	 * to differentiate between "periodic" and "punctuated" watermarks.
-	 *
+	 * 为数据流中的元素分配时间戳，并定期创建水印来表示事件时间进程。没用了
 	 * @deprecated Please use {@link #assignTimestampsAndWatermarks(WatermarkStrategy)} instead.
 	 */
 	@Deprecated

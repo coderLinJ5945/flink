@@ -23,12 +23,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Types;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -55,7 +50,7 @@ public class JdbcITCase extends JdbcTestBase {
 		env.fromElements(TEST_DATA)
 			.addSink(JdbcSink.sink(
 				String.format(INSERT_TEMPLATE, INPUT_TABLE),
-				(ps, t) -> {
+				(PreparedStatement ps, TestEntry t) -> {
 					ps.setInt(1, t.id);
 					ps.setString(2, t.title);
 					ps.setString(3, t.author);

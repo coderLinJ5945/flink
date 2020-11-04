@@ -41,6 +41,8 @@ import java.util.Collections;
  * WindowedStream<Tuple2<String, Integer>, String, TimeWindow> windowed =
  *   keyed.window(TumblingEventTimeWindows.of(Time.minutes(1)));
  * } </pre>
+ *
+ * 滚动事件窗口，窗口不叠加，窗口长度固定
  */
 @PublicEvolving
 public class TumblingEventTimeWindows extends WindowAssigner<Object, TimeWindow> {

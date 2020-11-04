@@ -52,6 +52,8 @@ public interface MapFunction<T, O> extends Function, Serializable {
 	 *
 	 * @throws Exception This method may throw exceptions. Throwing an exception will cause the operation
 	 *                   to fail and may trigger recovery.
+	 *	从数据集合中获取一个元素进行转换正好变成一个元素
+	 *  one-to-one 的数据转换，特别强调in和out 一对一
 	 */
 	O map(T value) throws Exception;
 }

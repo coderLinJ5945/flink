@@ -73,6 +73,11 @@ import java.util.Map;
  * and a total number of three fields ( it contains "id", "text", and "timestamp" through recursive flattening).
  *
  * @param <T> The type represented by this type information.
+ *           flink 流类型核心抽象类，一起来看看有几类：
+ *           	1. isBasicType ：是否表示基本类型。
+ *           	2. isTupleType ：是否表示元组类型：元组类型是Java API元组的子类
+ *           	3. isKeyType ：是否可以用作键。至少，类型必须是可hashable的，并且与键相当。
+ *
  */
 @Public
 public abstract class TypeInformation<T> implements Serializable {
